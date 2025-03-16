@@ -59,13 +59,13 @@ header {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Распределяем пространство между текстом и изображением */
+    justify-content: space-between;
     padding: 0 10%;
-    padding-bottom: 100;
-    margin-bottom: 10px;
-    background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
-    backdrop-filter: blur(10px);
+    padding-top: 60px; /* Отступ сверху для фиксированного хедера */
+    background: rgba(0, 0, 0, 0.9); /* Полупрозрачный черный фон */
+    backdrop-filter: blur(10px); /* Эффект размытия */
     position: relative;
+    overflow: hidden; /* Скрываем выходящие за пределы элементы */
 }
 
 .hero-content {
@@ -90,16 +90,42 @@ header {
 
 /* Стили для изображения справа */
 .hero-image {
-    width: 390px; /* Ширина изображения */
-    height: 370px; /* Высота изображения */
+    width: 400px; /* Ширина изображения */
+    height: 400px; /* Высота изображения */
     z-index: 2; /* Чтобы изображение было поверх фона */
+    overflow: hidden; /* Скрываем выходящие за пределы части изображения */
+    border-radius: 15px; /* Закругленные углы */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Тень */
 }
 
 .hero-image img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Сохраняем пропорции изображения */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Тень */
+    transition: transform 0.5s ease-in-out; /* Плавная анимация */
+}
+
+/* Анимация при наведении */
+.hero-image:hover img {
+    animation: moveImage 2s ease-in-out infinite alternate; /* Бесконечная анимация */
+}
+
+@keyframes moveImage {
+    0% {
+        transform: translateX(-10px); /* Двигаем влево */
+    }
+    50% {
+        transform: translateX(10px); /* Двигаем вправо */
+    }
+    100% {
+        transform: translateX(-10px); /* Возвращаем влево */
+    }
+}
+
+/* Плавный возврат в исходное положение */
+.hero-image img {
+    transform: translateX(0); /* Исходное положение */
+    transition: transform 0.5s ease-in-out; /* Плавный возврат */
 }
 
 /* Кнопка "Заказать" */
